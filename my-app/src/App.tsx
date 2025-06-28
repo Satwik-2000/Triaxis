@@ -13,8 +13,8 @@ const App: React.FC = () => (
     <Services />
     <Projects />
     {/* <VideoConference roomName="TriaxisConsultRoom" displayName="Your Name" /> */}
-    <VideoConferencePage />
     <ContactForm />
+    <VideoConferencePage />
     <Footer />
   </div>
 );

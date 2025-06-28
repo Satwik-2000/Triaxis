@@ -42,7 +42,7 @@ const VideoConferencePage: React.FC = () => {
             letterSpacing: '0.02em',
           }}
         >
-          Join Our Video Conference
+          Join 1-1 Video Conference
         </h2>
         <p
           style={{
@@ -73,7 +73,7 @@ const VideoConferencePage: React.FC = () => {
             }}
             onClick={() => setShowConference(true)}
           >
-            Enable Video Conference
+            Let's Talk
           </button>
         ) : (
           <div style={{ marginTop: '1.5rem' }}>
