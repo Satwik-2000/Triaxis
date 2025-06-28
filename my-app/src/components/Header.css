@@ -1,0 +1,345 @@
+/* Header.css */
+
+/* General setup for the header container */
+.header {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* MODERN: Dark theme with a subtle gradient */
+  background: linear-gradient(170deg, #0a192f 0%, #172a46 100%);
+  text-align: center;
+  color: #ccd6f6;
+  perspective: 1000px; /* For 3D transformations on child elements */
+}
+
+/* Container for all background animations */
+.construction-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  /* MODERN: Adjusted opacity for dark theme */
+  opacity: 0.3; 
+}
+
+/* --- NEW: Blueprint Grid --- */
+.blueprint-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(100, 118, 150, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 118, 150, 0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: scroll-grid 30s linear infinite;
+  z-index: -1; /* Place it behind other animations */
+}
+
+@keyframes scroll-grid {
+  from { background-position: 0 0; }
+  to { background-position: -50px -50px; }
+}
+
+/* --- NEW: Spotlights --- */
+.spotlight-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  mix-blend-mode: overlay; /* Blend spotlights with the scene */
+}
+
+.spotlight {
+  position: absolute;
+  bottom: -50%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at center, rgba(253, 126, 20, 0.2), transparent 60%);
+  transform-origin: center bottom;
+}
+
+.spotlight-1 {
+  left: 10%;
+  animation: sweep-light-1 15s infinite ease-in-out;
+}
+
+.spotlight-2 {
+  right: 10%;
+  animation: sweep-light-2 18s infinite ease-in-out;
+}
+
+@keyframes sweep-light-1 {
+  0%, 100% { transform: rotate(-30deg) scaleY(2.5); }
+  50% { transform: rotate(10deg) scaleY(2.5); }
+}
+
+@keyframes sweep-light-2 {
+  0%, 100% { transform: rotate(30deg) scaleY(2.5); }
+  50% { transform: rotate(-10deg) scaleY(2.5); }
+}
+
+/* --- ENHANCED: Crane Animation --- */
+.crane {
+  position: absolute;
+  right: 15%;
+  bottom: 20%;
+  width: 250px; /* Slightly larger */
+  height: 450px;
+  animation: crane-float 8s infinite ease-in-out;
+}
+
+.crane-tower {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 350px;
+  background: #495057;
+}
+
+.crane-arm {
+  position: absolute;
+  top: 70px; /* Adjusted position */
+  left: 50%;
+  width: 250px;
+  height: 8px;
+  background: #fd7e14;
+  transform-origin: left center;
+  transform: translateX(-50px) rotate(-5deg);
+  animation: arm-lift 12s infinite alternate ease-in-out;
+}
+
+.crane-cable {
+  position: absolute;
+  top: 74px; /* Adjusted position */
+  left: 170px;
+  width: 2px;
+  height: 120px;
+  background: #343a40;
+  animation: cable-extend 6s infinite alternate ease-in-out;
+}
+
+.crane-hook {
+  position: absolute;
+  bottom: -35px; /* Position relative to cable */
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  background: #dc3545;
+  border-radius: 50% 50% 0 0;
+  animation: hook-swing 3s infinite ease-in-out;
+}
+
+@keyframes arm-lift {
+  from { transform: translateX(-50px) rotate(-5deg); }
+  to { transform: translateX(-50px) rotate(-15deg); }
+}
+
+@keyframes cable-extend {
+  from { height: 120px; }
+  to { height: 180px; }
+}
+
+@keyframes hook-swing {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+/* --- ENHANCED: Building Progress --- */
+.building-progress {
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  transform: perspective(300px) rotateX(20deg); /* 3D perspective */
+}
+
+.building-floor {
+  position: relative;
+  width: 120px;
+  height: 35px;
+  background: #8d99ae;
+  margin-bottom: 2px;
+  opacity: 0;
+  overflow: hidden; /* For the scan effect */
+}
+
+/* MODERN: Scan-up effect for building floors */
+.building-floor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(253, 126, 20, 0.7), transparent);
+  animation: scan-up 1s ease-out;
+}
+
+.floor-1 { animation: building-rise 15s infinite linear; }
+.floor-2 { animation: building-rise 15s infinite linear 5s; }
+.floor-3 { animation: building-rise 15s infinite linear 10s; }
+
+@keyframes building-rise {
+  0% { opacity: 0; transform: translateY(20px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes scan-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(-100%); }
+}
+
+/* --- ENHANCED: Particles --- */
+.particle {
+  position: absolute;
+  background: rgba(253, 126, 20, 0.6);
+  border-radius: 50%;
+  animation: float-particle 20s infinite linear;
+}
+
+/* Create variations for a more random particle field */
+.particles .particle:nth-child(n) {
+  width: 3px; height: 3px;
+  top: calc(50% + rand() * 50%); /* Using CSS variables would be better for true randomness */
+  left: calc(50% + rand() * 50%);
+  animation-duration: calc(15s + (rand() * 10s));
+  animation-delay: calc(rand() * 10s);
+}
+/* This is pseudo-randomization. For true randomness, you would need JS */
+.particles .particle:nth-child(2n) { animation-duration: 25s; }
+.particles .particle:nth-child(3n) { left: 80%; animation-delay: -5s; }
+.particles .particle:nth-child(4n) { width: 2px; height: 2px; animation-duration: 18s; }
+.particles .particle:nth-child(5n) { left: 20%; animation-delay: -8s; }
+
+@keyframes float-particle {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x, 20px), -200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* --- Header Content & Title Styling --- */
+.header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 2rem;
+  animation: content-float 10s infinite ease-in-out;
+}
+
+@keyframes content-float {
+  0%, 100% { transform: translateY(0) rotateX(5deg); }
+  50% { transform: translateY(-15px) rotateX(-2deg); }
+}
+
+.header-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800; /* Bolder */
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  text-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+}
+
+/* Staggered load-in animation for title parts */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title-part-1, .title-part-2, .title-part-3 {
+  display: block;
+  opacity: 0; /* Start hidden */
+  animation: fade-in-up 1s forwards ease-out;
+}
+
+.title-part-1 { animation-delay: 0.2s; color: #dc3545; }
+.title-part-2 { animation-delay: 0.4s; color: #ccd6f6; }
+.title-part-3 { animation-delay: 0.6s; color: #fd7e14; }
+
+.header-subtitle {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  color: #8892b0;
+  min-height: 1.6em;
+  font-family: 'Roboto Mono', monospace; /* Monospaced for typing effect */
+  letter-spacing: 0.05em;
+}
+
+.cursor {
+  animation: blink 0.8s infinite;
+  color: #fd7e14;
+  font-weight: 700;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .header {
+    min-height: 600px;
+  }
+
+  /* Hide expensive/cluttering animations on mobile */
+  .blueprint-grid, .spotlight-container,
+  .construction-worker, .construction-vehicle {
+    display: none;
+  }
+
+  .crane {
+    right: 5%;
+    bottom: 15%;
+    transform: scale(0.8);
+  }
+
+  .building-progress {
+    left: 10%;
+    transform: scale(0.9);
+  }
+  
+  .header-content {
+    padding: 0 1rem;
+  }
+}
+
+/* Original animations for reference or that remain largely unchanged */
+.construction-worker { position: absolute; width: 15px; height: 25px; background: #6c757d; border-radius: 3px; }
+.worker-1 { bottom: 18%; left: 25%; animation: worker-walk 12s infinite linear, worker-bob 2s infinite ease-in-out; }
+.worker-2 { bottom: 18%; left: 35%; animation: worker-walk-reverse 15s infinite linear, worker-bob 2.5s infinite ease-in-out; }
+.construction-vehicle { position: absolute; bottom: 17%; width: 40px; height: 20px; background: #5a688a; border-radius: 3px; }
+.vehicle-1 { left: -50px; animation: vehicle-move 25s infinite linear; }
+.vehicle-2 { left: -80px; animation: vehicle-move 30s infinite linear 5s; }
+.construction-beam { position: absolute; background: rgba(253, 126, 20, 0.2); }
+.beam-1 { top: 40%; left: 15%; width: 150px; height: 8px; transform: rotate(45deg); animation: beam-pulse 4s infinite ease-in-out; }
+.beam-2 { top: 50%; right: 20%; width: 200px; height: 8px; transform: rotate(-30deg); animation: beam-pulse 5s infinite ease-in-out 1s; }
+
+@keyframes worker-walk { from { left: 25%; } to { left: 45%; } }
+@keyframes worker-walk-reverse { from { left: 35%; } to { left: 15%; } }
+@keyframes worker-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes vehicle-move { from { left: -50px; } to { left: 105%; } }
+@keyframes beam-pulse { 0%, 100% { opacity: 0.2; transform: scaleX(1); } 50% { opacity: 0.5; transform: scaleX(1.05); } }
+@keyframes crane-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }

@@ -1,0 +1,328 @@
+/* ==== Container and Section Styling ==== */
+.contact-section {
+  padding: 4rem 2rem; /* Increased horizontal padding for better breathing room */
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  display: flex;
+  justify-content: center; /* center container horizontally */
+  align-items: center;
+  min-height: 100vh; /* fill viewport height */
+  box-sizing: border-box;
+}
+
+/* Contact form wrapper */
+.contact-container {
+  max-width: 600px; /* widened container for larger screens */
+  width: 100%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px; /* slightly larger radius for modern look */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* stronger shadow for subtle depth */
+  padding: 3rem 3.5rem;
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+/* Hover lift */
+.contact-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ==== Heading ==== */
+.contact-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+  /* Gradient text - ensure fallback color is transparent to avoid flicker */
+  background: linear-gradient(90deg, #ff9800, #ff5722);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
+}
+
+/* Subheading */
+.contact-subheading {
+  text-align: center;
+  color: #718096;
+  margin-bottom: 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ==== Form Layout ==== */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Form groups for inputs */
+.form-group {
+  position: relative;
+}
+
+/* Common input styles */
+.form-input {
+  width: 100%;
+  padding: 1.25rem 1rem 1.25rem 1rem; /* top padding to give space for floating label on focus */
+  border: 1.8px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #2d3748;
+  background-color: #f8fafc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  resize: none; /* avoid resizing except textarea will override */
+}
+
+/* Input focus styles */
+.form-input:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.3);
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Floating label: move up on focus or when input has content */
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+  transform: translateY(-140%) scale(0.85);
+  background: white;
+  padding: 0 0.6rem;
+  left: 1.1rem;
+  color: #ff9800;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Label Styling */
+.form-label {
+  position: absolute;
+  left: 1.1rem;
+  top: 1.25rem;
+  color: #94a3b8;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  user-select: none;
+  background-color: transparent;
+}
+
+/* Textarea specifics */
+.textarea {
+  min-height: 140px;
+  resize: vertical;
+  padding-top: 1.4rem; /* slightly more top padding for label */
+  font-family: inherit;
+  line-height: 1.5;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+/* ==== Button ==== */
+.submit-button {
+  padding: 1.25rem 0;
+  background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(255, 87, 34, 0.3);
+  user-select: none;
+}
+
+/* Hover state */
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 87, 34, 0.45);
+}
+
+/* Focus state for accessibility */
+.submit-button:focus-visible {
+  outline: 2px solid #ff9800;
+  outline-offset: 2px;
+}
+
+/* Disabled or submitting */
+.submit-button:disabled,
+.submit-button.submitting {
+  background: linear-gradient(90deg, #ffb74d 0%, #ff8a65 100%);
+  cursor: wait;
+  box-shadow: none;
+  color: #fff;
+}
+
+/* Spinner inside button */
+.spinner {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==== Success message ==== */
+.success-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: #38a169;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-top: 1.5rem;
+  animation: fadeInUp 0.4s ease forwards;
+  user-select: none;
+}
+
+/* Animations for success checkmark */
+.checkmark {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: #38a169;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #38a169;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.75s forwards;
+}
+
+/* Stroke animation for SVG checkmark */
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Fade and slide up for success message */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==== Responsive Design ==== */
+
+/* Small screens (phones) */
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .contact-container {
+    padding: 2rem 2rem;
+    border-radius: 16px;
+    max-width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .contact-heading {
+    font-size: 1.75rem;
+  }
+
+  .contact-subheading {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-input {
+    font-size: 1rem;
+    padding: 0.9rem 0.9rem 0.9rem 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 3rem 2rem;
+  }
+
+  .contact-container {
+    max-width: 90%;
+    padding: 2.5rem 2.5rem;
+  }
+
+  .contact-heading {
+    font-size: 2rem;
+  }
+
+  .contact-subheading {
+    font-size: 1.125rem;
+  }
+
+  .submit-button {
+    font-size: 1.125rem;
+  }
+}
+
+/* Larger phones landscape or small tablets */
+@media (max-width: 600px) {
+  .contact-container {
+    padding: 2rem 2rem;
+    max-width: 100%;
+  }
+
+  .contact-heading {
+    font-size: 1.8rem;
+  }
+}
+
+/* ==== Additional UX Enhancements ==== */
+
+/* Accessibility: high contrast outline for keyboard users */
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Prevent text selection on floating labels */
+.form-label {
+  user-select: none;
+}

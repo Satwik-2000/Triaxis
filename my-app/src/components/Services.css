@@ -1,0 +1,96 @@
+/* Services.css */
+
+.services-section {
+  padding: 5rem 1rem;
+  background-color: #ffffff; /* A clean white background */
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font size */
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #7f8c8d;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* MODERN: Using CSS Grid for a robust, responsive card layout */
+.services-grid {
+  display: grid;
+  /* Creates columns that are at least 280px wide, but will expand to fill space */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  text-align: left;
+}
+
+.service-card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+
+  /* MODERN: Smooth transition for hover effects */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  
+  /* MODERN: Staggered entry animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: card-fade-in 0.6s ease forwards;
+}
+
+/* Delaying each card's animation for a staggered effect */
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes card-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MODERN: Interactive hover state */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(44, 62, 80, 0.1);
+  border-color: #fd7e14; /* Uses accent color from the header on hover */
+}
+
+.service-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1.5rem;
+  /* Accent color matching the header theme */
+  color: #fd7e14;
+  transition: color 0.3s ease;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+}
+
+.service-desc {
+  font-size: 0.98rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}

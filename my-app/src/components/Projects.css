@@ -1,0 +1,133 @@
+/* Projects.css */
+
+.projects-section {
+  padding: 5rem 1rem;
+  /* A very light grey to subtly differentiate from the white section before it */
+  background-color: #f8f9fa; 
+}
+
+/* Reusing container and title styles for consistency */
+.container {
+  max-width: 1200px; /* Slightly wider for image grid */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #7f8c8d;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* A responsive grid for the project cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+/* MODERN: The core project card styling */
+.project-card {
+  position: relative;
+  display: block;
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden; /* Crucial for keeping children and effects contained */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+  
+  /* Staggered entry animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: card-fade-in 0.6s ease forwards;
+
+  /* Smooth transition for the background image zoom */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Stagger the animation for each card */
+.projects-grid > a:nth-child(1) { animation-delay: 0.1s; }
+.projects-grid > a:nth-child(2) { animation-delay: 0.2s; }
+.projects-grid > a:nth-child(3) { animation-delay: 0.3s; }
+.projects-grid > a:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes card-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* The dark overlay that contains the text content */
+.project-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  color: #fff;
+  
+  /* A gradient from transparent to dark creates a professional look */
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 70%);
+  
+  /* MODERN: Smooth transition for the overlay's movement and opacity */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Initial state: overlay is slightly raised from the bottom */
+.project-card-overlay {
+  transform: translateY(55%);
+}
+
+/* Hover state: overlay slides up to reveal more content */
+.project-card:hover .project-card-overlay {
+  transform: translateY(0);
+}
+
+.project-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #ffffff;
+}
+
+/* Initial state: Description and link are hidden */
+.project-desc, .project-link {
+  opacity: 0;
+  transition: opacity 0.4s ease 0.1s; /* Delay opacity transition slightly */
+}
+
+/* Hover state: Fade in the description and link */
+.project-card:hover .project-desc,
+.project-card:hover .project-link {
+  opacity: 1;
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+
+.project-link {
+  font-weight: 600;
+  color: #fd7e14; /* Accent color */
+  display: inline-block;
+}
